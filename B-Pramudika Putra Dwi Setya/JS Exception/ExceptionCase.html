@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Division Error Handling</title>
+</head>
+<body>
+
+    <h2>Division Calculator</h2>
+    <label for="x">Enter first number (x):</label>
+    <input type="number" id="x" placeholder="Enter a number">
+
+    <label for="y">Enter second number (y):</label>
+    <input type="number" id="y" placeholder="Enter a number">
+
+    <button onclick="divideNumbers()">Divide x and y</button>
+
+    <div id="error"></div>
+    <div id="result"></div>
+
+    <script>
+        function divideNumbers() {
+            const x = parseFloat(document.getElementById('x').value);
+            const y = parseFloat(document.getElementById('y').value);
+            const errorDiv = document.getElementById('error');
+            const resultDiv = document.getElementById('result');
+
+            // Reset error and result messages
+            errorDiv.textContent = '';
+            resultDiv.textContent = '';
+
+            try {
+                if (isNaN(x) || isNaN(y)) {
+                    throw new Error('x dan y harus angka.');
+                }
+                if (y === 0) {
+                    throw new Error('pembagian dengan 0 tidak diizinkan.');
+                }
+
+                const result = x / y;
+
+                resultDiv.textContent = `Result: ${x} / ${y} = ${result}`;
+            } catch (error) {
+                errorDiv.textContent = error.message;
+            }
+        }
+    </script>
+
+</body>
+</html>
